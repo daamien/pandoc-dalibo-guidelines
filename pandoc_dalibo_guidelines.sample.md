@@ -19,3 +19,11 @@ dalibo_guidelines: {
 
 -----
 
+# test 501 : non-beaking space before a colon
+
+This is ok :
+
+This is not ok :
+
+
+

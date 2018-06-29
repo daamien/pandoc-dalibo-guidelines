@@ -21,6 +21,9 @@ test: basic_test  $(TEX) $(PDF)
 basic_test:
 	echo 'hello world' | pandoc -t json | python -tt $(FILTER)
 
+%.json: %.md
+	pandoc --filter $(FILTER) $^ -o $@
+
 %.tex: %.md
 	pandoc --filter $(FILTER) $(MD) -o $(TEX)
 

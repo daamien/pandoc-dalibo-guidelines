@@ -10,6 +10,7 @@ RULES[1]="" # YOU DO NOT TALK ABOUT FIGHT CLUB
 RULES[2]="" # YOU DO NOT TALK ABOUT FIGHT CLUB
 RULES[3]="TOO MANY ITEMS IN BULLET LIST"
 RULES[4]="CODEBLOCK IN BULLET LIST"
+RULES[5]="NON BREAKING SPACE BEFORE A COLON"
 
 from panflute import *
 import sys
@@ -36,6 +37,8 @@ def checks(elem, doc):
             elem.walk(bulletlist_has_too_many_items)
             elem.walk(no_codeblocks_in_bulletlists)
 
+    if type(elem) == Str:
+        elem.walk(nonbreaking_space_before_a_colon)
 #
 # RULE 3 : No more than 8 items in a bullet list in slide
 #
@@ -50,6 +53,18 @@ def no_codeblocks_in_bulletlists(elem, doc):
     if isinstance(elem, CodeBlock):
         debug("found {0} in slide '{1}'".format(RULES[4],doc.dwgc_current_header))
         doc.dwgc_errors[4]+=1 
+
+#
+# RULE 5 : Do not put breaking space before a colon
+#
+def nonbreaking_space_before_a_colon(elem,doc):
+    doc.dwgc_total_checks+=1
+    if isinstance(elem, Str) and elem.text==':' :
+        if type(elem.prev) == Space :
+            # the previous element is a space
+            debug("found {0} in slide '{1}'".format(RULES[5], doc.dwgc_current_header))
+            doc.dwgc_errors[5]+=1
+    
 
 
 def finalize(doc):
