@@ -1,4 +1,4 @@
-"""A setuptools based setup module.²
+"""A setuptools based setup module.
 See:
 https://packaging.python.org/en/latest/distributing.html
 https://github.com/daamien/pandoc-dalibo-guidelines

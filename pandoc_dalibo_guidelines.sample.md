@@ -2,7 +2,7 @@
 title: Pandoc Dalibo Guidelines Filter
 
 dalibo_guidelines: {
-   strict_mode: True
+#   strict_mode: True
 }
    
 
